@@ -1,0 +1,12 @@
+:root{
+    --posX: 30px;
+    --posY: 30px;
+}
+#sq{
+    position: absolute;
+    left: var(--posX);
+    top: var(--posY);
+    width: 30px;
+    height: 30px;
+    background-color: #e6a417;
+}

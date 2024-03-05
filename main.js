@@ -1,20 +1,55 @@
-sq = document.getElementById('sq');
+const botoes = document.querySelectorAll(".botao");
+const textos = document.querySelectorAll(".aba-conteudo");
 
-document.addEventListener('keydown', (tecla_apertada)=>{
-    if(tecla_apertada.key === 'a' || tecla_apertada.key === 'A'){
-        var posX = sq.style.left ? parseInt(sq.style.left) : 30;
-        sq.style.left = posX - 30 + 'px';
+for (let i = 0; i < botoes.length; i++) {
+    botoes[i].onclick = function () {
+
+        for (let j = 0; j < botoes.length; j++) {
+            botoes[j].classList.remove("ativo");
+            textos[j].classList.remove("ativo");
+        }
+
+        botoes[i].classList.add("ativo");
+        textos[i].classList.add("ativo");
     }
-    else if(tecla_apertada.key === 'd' || tecla_apertada.key === 'D'){
-        var posX = sq.style.left ? parseInt(sq.style.left) : 30;
-        sq.style.left = posX + 30 + 'px';
+}
+
+const contadores = document.querySelectorAll(".contador");
+const tempoObjetivo1 = new Date("2020-10-05T00:00:00");
+const tempoObjetivo2 = new Date("2023-12-05T00:00:00");
+const tempoObjetivo3 = new Date("2023-12-30T00:00:00");
+const tempoObjetivo4 = new Date("2024-02-01T00:00:00");
+
+const tempos = [tempoObjetivo1,tempoObjetivo2,tempoObjetivo3,tempoObjetivo4];
+
+
+function calculaTempo(tempoObjetivo) {
+    let tempoAtual = new Date();
+    let tempoFinal = tempoObjetivo - tempoAtual;
+    let segundos = Math.floor(tempoFinal / 1000);
+    let minutos = Math.floor(segundos / 60);
+    let horas = Math.floor(minutos / 60);
+    let dias = Math.floor(horas / 24);
+
+    segundos %= 60;
+    minutos %= 60;
+    horas %= 24;
+    if (tempoFinal > 0){
+        return dias + " dias " + horas + " horas " + minutos + " minutos " + segundos + " segundos";
+    } else {
+        return "Prazo Finalizado";
     }
-    else if(tecla_apertada.key === 'w' || tecla_apertada.key === 'W'){
-        var posY = sq.style.top ? parseInt(sq.style.top) : 30;
-        sq.style.top = posY - 30 + 'px';
+}
+
+function atualizaCronometro(){
+    for (let i=0; i<contadores.length;i++){
+        contadores[i].textContent = calculaTempo(tempos[i]);   
     }
-    else if(tecla_apertada.key === 's' || tecla_apertada.key === 'S'){
-        var posY = sq.style.top ? parseInt(sq.style.top) : 30;
-        sq.style.top = posY + 30 + 'px';
-    }
-});
+}
+
+function comecaCronometro(){
+    atualizaCronometro();
+    setInterval(atualizaCronometro,1000);
+}
+
+comecaCronometro();

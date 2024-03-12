@@ -1,6 +1,8 @@
 const botoes = document.querySelectorAll(".botao");
 const textos = document.querySelectorAll(".aba-conteudo");
 
+// quando um botão for clicado, a classe "ativo" é retirada de todos os botões
+// a classe "ativo" é então adicionada ao botão clicado
 for (let i = 0; i < botoes.length; i++) {
     botoes[i].onclick = function () {
 

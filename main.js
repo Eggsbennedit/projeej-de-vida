@@ -14,15 +14,17 @@ for (let i = 0; i < botoes.length; i++) {
     }
 }
 
+// cria um tempo limite para a conclusão dos objetivos
 const contadores = document.querySelectorAll(".contador");
-const tempoObjetivo1 = new Date("2023-10-05T00:00:00");
-const tempoObjetivo2 = new Date("2023-12-05T00:00:00");
-const tempoObjetivo3 = new Date("2023-12-30T00:00:00");
+const tempoObjetivo1 = new Date("2024-10-05T00:00:00");
+const tempoObjetivo2 = new Date("2024-12-05T00:00:00");
+const tempoObjetivo3 = new Date("2024-12-30T00:00:00");
 const tempoObjetivo4 = new Date("2024-02-01T00:00:00");
 
 const tempos = [tempoObjetivo1,tempoObjetivo2,tempoObjetivo3,tempoObjetivo4];
 
 
+// define quanto tempo falta até que a data atual alcance a data limite
 function calculaTempo(tempoObjetivo) {
     let tempoAtual = new Date();
     let tempoFinal = tempoObjetivo - tempoAtual;
@@ -41,6 +43,7 @@ function calculaTempo(tempoObjetivo) {
     }
 }
 
+// lê o nome da função e adivinha :/
 function atualizaCronometro(){
     for (let i=0; i<contadores.length;i++){
         document.getElementById("dias"+i).textContent = calculaTempo(tempos[i])[0];
@@ -50,6 +53,7 @@ function atualizaCronometro(){
     }
 }
 
+// atualiza o cronômetro a cada 1 segundo (1000 milésimos)
 function comecaCronometro(){
     atualizaCronometro();
     setInterval(atualizaCronometro,1000);
